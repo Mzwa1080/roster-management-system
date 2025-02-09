@@ -1,0 +1,51 @@
+<div class="container mt-4">
+  <h2>Daily Roster - {{ selectedDate }}</h2>
+
+  <!-- Date Navigation -->
+  <div class="my-3">
+    <button *ngFor="let date of scheduleDates" class="btn btn-outline-primary mr-2" (click)="changeDate(date)">
+      {{ date }}
+    </button>
+  </div>
+
+  <!-- Filters -->
+  <div class="mb-3">
+    <input type="text" class="form-control mb-2" placeholder="Filter by Task" (input)="filterByTask($event)" />
+    <input type="text" class="form-control mb-2" placeholder="Filter by Developer Name" (input)="filterByDeveloper($event)" />
+    <button class="btn btn-secondary mt-2" (click)="resetFilters()">Reset Filters</button>
+  </div>
+
+  <!-- Shifts Table -->
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Developer</th>
+          <th>Task</th>
+          <th>Shift Start</th>
+          <th>Shift End</th>
+          <th>Lunch Break</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let shift of filteredSchedule">
+          <td>
+            <span>{{ getDeveloperInfo(shift.developerId)?.name || 'Unknown Developer' }}</span> -
+            <span class="text-muted">({{ getDeveloperInfo(shift.developerId)?.role }})</span>
+          </td>
+          <td>{{ shift.task }}</td>
+          <td>{{ shift.shiftStart }}</td>
+          <td>{{ shift.shiftEnd }}</td>
+          <td>{{ shift.lunchBreak }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pie Chart -->
+  <h2>Task Distribution for {{ selectedDate }}</h2>
+  <div id="pie-chart"></div> <!-- Chart will be drawn here -->
+
+  <!-- Message when there is no data -->
+  <p *ngIf="chartData.length <= 1">No data available for this date.</p>
+</div>
