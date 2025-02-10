@@ -16,7 +16,6 @@ export class ReportsComponent implements OnInit {
   averageTasksPerDeveloper: number = 0;
 
   pieChartOptions = {
-    title: 'Task Distribution',
     width: 500,
     height: 400,
     pieHole: 0.4,
@@ -25,7 +24,6 @@ export class ReportsComponent implements OnInit {
   };
 
   barChartOptions = {
-    title: 'Resource Coverage',
     width: 500,
     height: 400,
     chartArea: { width: '80%', height: '75%' },

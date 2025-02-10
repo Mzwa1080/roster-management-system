@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit {
   chartData: any[] = [];
 
   chartOptions = {
-    title: 'Task Distribution',
+    // title: 'Task Distribution',
     width: 600,
     height: 400,
     pieHole: 0.4,
