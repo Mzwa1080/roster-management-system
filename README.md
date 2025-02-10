@@ -6,12 +6,19 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 ```bash
 1. Clone the repository ( git clone https://github.com/Mzwa1080/roster-management-system.git )
 
-2. run - npm install or npm i -(To install all the dependencies) 
+```
+2. To install all the dependencies
+``` bash 
+run - npm install or npm i 
+``` 
 
-3. run - ng serve or ng s - (To run the server locally)
+3. To run the server locally
+```bash 
+ng serve or ng s 
+```
 
 4. Open the browser or click on http://localhost:4200
-```
+
 ## Development server
 
 To start a local development server, run:
