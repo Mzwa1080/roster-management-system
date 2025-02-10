@@ -145,11 +145,8 @@ export class ReportsComponent implements OnInit {
       }
     }
     console.log('Total Tasks:', this.totalTasks);
-    
     console.log('Total Developers:', this.totalDevelopers);
-
-    console.log('Average Tasks Per Developer:', this.averageTasksPerDeveloper);
-
+    
     this.totalTasks = totalTasks;
     this.totalDevelopers = totalDevelopers.size;
     this.averageTasksPerDeveloper = totalTasks / this.totalDevelopers;
