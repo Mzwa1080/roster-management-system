@@ -19,6 +19,12 @@ ng serve or ng s
 
 4. Open the browser or click on http://localhost:4200
 
+5. Login as a Team Leader or Developer
+```bash
+David Bishops(Team leader) | Shawn Louw( Developer )
+password 1234
+```
+
 ## Development server
 
 To start a local development server, run:
