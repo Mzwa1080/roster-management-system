@@ -10,12 +10,12 @@ export class AuthService {
   private url = 'https://mzwa1080.github.io/roster-data/data/data.json';
   private currentUser: any = null;
   userLoggedIn = new BehaviorSubject<boolean>(false);
+  userName = new BehaviorSubject<string | null>(null);
 
   constructor(private http: HttpClient, private router:Router) {
     const storedUser = localStorage.getItem('CurrentUser');
     if (storedUser) {
       this.currentUser = JSON.parse(storedUser);
-      
       this.userLoggedIn.next(true); 
     }
   }
@@ -30,6 +30,8 @@ export class AuthService {
           this.currentUser = user;
           localStorage.setItem('CurrentUser', JSON.stringify(user));
           this.userLoggedIn.next(true); 
+          this.userName.next(name)
+          
           return user;
         } else {
           throw new Error('User not found or invalid role');
@@ -43,14 +45,19 @@ export class AuthService {
   }
 
   getCurrentUser(): any {
-    const storedUser = localStorage.getItem('CurrentUser');
-    return storedUser ? JSON.parse(storedUser) : null;
+    if (!this.currentUser) {
+      const storedUser = localStorage.getItem('CurrentUser');
+      this.currentUser = storedUser ? JSON.parse(storedUser) : null;
+    }
+    return this.currentUser;
   }
+  
 
   logOut() {
     localStorage.removeItem('CurrentUser');
     this.userLoggedIn.next(false);
     this.router.navigate(['/login']) 
-    this.currentUser = null
+    this.currentUser = null;
+    this.userName.next(null)
   }
 }

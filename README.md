@@ -2,6 +2,11 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.6.
 
+
+## Project Overview
+This Angular web app displays a daily team roster using Google Charts to visualize task distribution among developers. It uses a JSON-based data structure, loads dynamically, and presents key management insights.
+
+
 ## How to Run
 ```bash
 1. Clone the repository ( git clone https://github.com/Mzwa1080/roster-management-system.git )
@@ -9,7 +14,7 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 ```
 2. To install all the dependencies
 ``` bash 
-run - npm install or npm i 
+run npm install or npm i 
 ``` 
 
 3. To run the server locally

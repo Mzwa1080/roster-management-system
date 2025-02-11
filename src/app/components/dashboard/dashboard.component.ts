@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { CommonModule } from '@angular/common';
 import moment from 'moment-timezone';
+import { AuthService } from '../../services/auth.service';
 
 declare var google: any;
 
@@ -17,6 +18,7 @@ export class DashboardComponent implements OnInit {
   selectedDate: string = '';
   filteredSchedule: any[] = [];
   chartData: any[] = [];
+  userName: string = '';
 
   chartOptions = {
     // title: 'Task Distribution',
@@ -27,7 +29,7 @@ export class DashboardComponent implements OnInit {
     legend: { position: 'bottom' },
   };
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService, private authService:AuthService) { }
 
   ngOnInit(): void {
     this.dataService.getRosterData().subscribe((data: any) => {
@@ -38,6 +40,8 @@ export class DashboardComponent implements OnInit {
       this.filteredSchedule = this.scheduleShifts(this.selectedDate);
       this.preparingChartData();
       this.loadGoogleCharts();
+      this.userName = this.authService.getCurrentUser().name
+      
     });
   }
   convertToSA(time: string): string {

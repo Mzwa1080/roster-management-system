@@ -1,5 +1,10 @@
 <div class="container mt-4">
-  <h2>Daily Roster - {{ selectedDate }}</h2>
+  <h2>
+  
+      <strong>Date:</strong> {{ selectedDate }}
+      <span *ngIf="userName"> | <strong>Welcome:</strong> {{ userName }}</span>
+  
+  </h2>
 
   <div class="my-3">
     <button *ngFor="let date of scheduleDates" class="btn btn-outline-primary mr-2" (click)="changeDate(date)">
