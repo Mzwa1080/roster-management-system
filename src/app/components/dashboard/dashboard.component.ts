@@ -44,6 +44,7 @@ export class DashboardComponent implements OnInit {
       
     });
   }
+  
   convertToSA(time: string): string {
     return moment.tz(time, 'HH:mm', 'Africa/Johannesburg').format('HH:mm');
   }
@@ -101,6 +102,7 @@ export class DashboardComponent implements OnInit {
       console.log('Google Charts is not loaded');
     }
   }
+
 
   // Im getting the list of the dates from schedule
   get scheduleDates(): string[] {

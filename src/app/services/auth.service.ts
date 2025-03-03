@@ -29,8 +29,8 @@ export class AuthService {
         if (user) {
           this.currentUser = user;
           localStorage.setItem('CurrentUser', JSON.stringify(user));
-          this.userLoggedIn.next(true); 
-          this.userName.next(name)
+          this.userLoggedIn.next(true); // changing the state of the user logged in
+          this.userName.next(name) //name of the user logged in
           
           return user;
         } else {

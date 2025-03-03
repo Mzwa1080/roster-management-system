@@ -13,62 +13,56 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   title = 'dev-box-roster';
-  developers: any[] =[]
-  schedule  : any = {};
+  developers: any[] = []
+  schedule: any = {};
   todaySchedule: any[] = [];
   selectedDate: string = new Date().toISOString().split('T')[0];
-  navBar : boolean = false;
+  navBar: boolean = false;
 
-  constructor(private dataService:DataService, private authService: AuthService, private router:Router){}
-  
-  loadSchedule(){
+  constructor(private dataService: DataService, private authService: AuthService, private router: Router) { }
+
+  loadSchedule() {
     this.todaySchedule = this.schedule[this.selectedDate] || [];
   }
   ngOnInit(): void {
     const currentUser = this.authService.getCurrentUser();
-    console.log('Retrieved user from storage:', currentUser); 
+    console.log('Retrieved user from storage:', currentUser);
 
     if (currentUser) {
-      this.navBar = true; 
+      this.navBar = true;
     } else {
       this.navBar = false;
     }
+    this.dataService.getRosterData().subscribe(data => {
+      this.developers = data.members;
+      this.schedule = data.schedule;
+      this.loadSchedule()
+    })
 
-
-    
-      this.dataService.getRosterData().subscribe(data =>{
-        this.developers = data.members;
-        this.schedule = data.schedule;
-        this.loadSchedule()
-      })
-
-      this.authService.userLoggedIn.subscribe(status => {
-        this.navBar = status;
-      });
+    this.authService.userLoggedIn.subscribe(status => {
+      this.navBar = status;
+    });
   }
 
-  getDeveloperName(id: number):string{
-    const dev = this.developers.find(dev => dev.developerId ===id)
-    if(dev){
+  getDeveloperName(id: number): string {
+    const dev = this.developers.find(dev => dev.developerId === id)
+    if (dev) {
       return dev.name;
-    }else{
+    } else {
       return "Developer not found!"
     }
   }
 
-  getDeveloperRole():boolean{
+  getDeveloperRole(): boolean {
     return this.authService.userRole('Developer')
   }
-  getTeamLeaderRole():boolean{
+  getTeamLeaderRole(): boolean {
     return this.authService.userRole('Team Leader')
   }
 
-
-
-
   logOut() {
-    this.authService.logOut(); 
+    this.authService.logOut();
     this.router.navigate(['/login']);
   }
-  
+
 }
